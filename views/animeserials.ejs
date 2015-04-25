@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="col-xs-2 pad">
+      <ul id="side-menu">
+<ul id="animename">
+<% var anime = 0;
+for( var i = 0; i < animes.length; i++) {%>
+          <li><a href="/animeserials/<%= animes[i]._id %>"><%= animes[i].animename %></a> </li>
+
+          <%
+          if(animes[i]._id == id)
+            anime = animes[i];
+           } %>
+</ul>
+
+    </div>
+    <div class="col-xs-10">
+
+
+
+    <% if(anime==0){%>
+      <h1><%= title %></h1>
+    <%}else{%>
+      <h1><%= anime.animename%></h1>
+      <% for( var i = 0; i < anime.animeseries.length; i++) {%>
+        <div><iframe src="<%= anime.animeseries[i].path%>" width="607" height="360" frameborder="0" allowfullscreen></iframe></div>
+    <%}
+    }%>
+     
+    </div>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+body {
+	background: url(../images/fon.png);
+}
+.container {
+background: #ffffff;
+box-shadow: 0 0 10px rgba(0,0,0,0.5);
+width: 1000px !important;
+
+
+}
+.container #top {
+	width: 100%;
+	height: 200px;
+}
+
+.container #top img{
+	width: 100%;
+	height: 200px;
+}
+
+.container #menu {
+	list-style-type: none;
+	padding: 0px 4px 0px 4px;
+	background: #d63c15;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+	border-radius: 0px 0px 3px 3px;
+	
+}
+.container #menu li {
+		display: inline-block;
+		border-right: 1px solid #fcf5e8;
+		margin: 4px 0px 4px 0px;
+		padding: 8px;
+}
+
+.container #menu li a {
+	text-decoration: none;
+	color: #fcf5e8;
+	text-transform: uppercase;
+
+}
+
+.container #menu #log{
+	float: right;
+	border: none;
+}
+
+.container #menu #animemovie {
+	border: none;
+}
+
+.container-fluid .pad {
+	padding: 0 0 0 0;
+}
+
+.container #side-menu {
+	display: inline-block;
+	list-style-type: none;
+	padding: 0px 4px 0px 4px;
+	background: #d63c15;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+	border-radius: 3px;
+}
+
+.container #side-menu li {
+		display: block;
+		margin: 4px 0px 4px 0px;
+		padding: 4px;
+}
+
+.container #side-menu li a {
+	text-decoration: none;
+	color: #fcf5e8;
+}
+
+.container #side-menu ul {
+	padding: 0px;
+}
+

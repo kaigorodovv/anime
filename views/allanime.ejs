@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="col-xs-2 pad">
+      <ul id="side-menu">
+<ul id="animename">
+        <li><a href="/allanime">Все аниме</a> </li>
+		<li><a href="/addanime">Добавить аниме</a></li>
+ 		<li><a href="/addseries">Добавить серию</a></li>
+</ul>
+
+    </div>
+    <div class="col-xs-10">
+    <h1><%= title %></h1>
+<h2>Аниме сериалы</h2>
+<% for( var i = 0; i < animes.length; i++) {
+		if(animes[i].animetype == 'animeserials') {%>
+		          <p><%= animes[i].animename %><button onclick="dropanime('<%= animes[i]._id%>')">Удалить</button></p>
+	 <%  }
+	 } %>
+
+<h2>Аниме OVA</h2>
+<% for( var i = 0; i < animes.length; i++) {
+		if(animes[i].animetype == 'animemova') {%>
+		        <p><%= animes[i].animename %><button onclick="dropanime('<%= animes[i]._id%>')">Удалить</button></p>
+	 <%  }
+	 } %>
+
+<h2>Аниме фильмы</h2>
+<% for( var i = 0; i < animes.length; i++) {
+		if(animes[i].animetype == 'animemovie') {%>
+		          <p><%= animes[i].animename %><button onclick="dropanime('<%= animes[i]._id%>')">Удалить</button></p>
+
+	 <%  }
+	 } %>
+    
+     
+    </div>
+  </div>
+</div>
+
+
+

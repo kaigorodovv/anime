@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="col-xs-2 pad">
+      <ul id="side-menu">
+		
+		<% var anime = 0;
+		for( var i = 0; i < animes.length; i++) {%>
+		          <li><a href="/animemovie/<%= animes[i]._id %>"><%= animes[i].animename %></a> </li>
+		          <%if(animes[i]._id == id)
+		            anime = animes[i];
+	   } %>
+
+		</ul>
+	</div>
+
+    <div class="col-xs-10">
+	    <% if(anime==0){%>
+	      <h1>Anime movie</h1>
+	    <%}else{%>
+	      <h1><%= anime.animename%></h1>
+	      <div class="col-xs-10">
+	      	<div><iframe src="<%= anime.animepath%>" width="607" height="360" frameborder="0"></iframe></div>
+	      </div>
+
+	    <div class="col-xs-2">
+    		<button onclick="addanime(<%= anime._id%>)">Добавить  в просмотренные</button>
+    
+    	</div>
+
+	    <%}%>
+    </div>
+
+  </div>
+</div>

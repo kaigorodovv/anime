@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="col-xs-2 pad">
+      <ul id="side-menu">
+<ul id="animename">
+        <li><a href="/allanime">Все аниме</a> </li>
+		<li><a href="/addanime">Добавить аниме</a></li>
+ 		<li><a href="/addseries">Добавить серию</a></li>
+</ul>
+
+    </div>
+    <div class="col-xs-10">
+    <h1><%= title %></h1>
+
+
+
+    <form method="POST" id="form">
+   <p><select name="_id">
+          <option selected="selected">Выберите аниме</option>
+          <% for( var i = 0; i < animes.length; i++) { %>
+    			<option value="<%= animes[i]._id %>"><%= animes[i].animename %></option>
+	 <%}%>
+      </select></p>
+
+    <p><label for="numberSeries">Номер серии:</label></p>
+	<p><input id="numberSeries" name="numberSeries" size = "80" value="" type="text"></p>
+
+	<p><label for="path">Путь к видео:</label></p>
+	<p><input id="path" name="path" size = "80" value="" type="text"></p>
+    </form>
+
+    <p><button onclick="addseries()">Добавить серию</button></p>
+    
+     
+    </div>
+  </div>
+</div>
