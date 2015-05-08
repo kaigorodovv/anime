@@ -1,0 +1,27 @@
+<h1><%=title%> "<%= anime[0].animename%>"</h1>
+
+
+
+<%for( var j = 0; j < anime[0].animeseasons.length; j++) {%>
+<h3>Сезон <%= anime[0].animeseasons[j].numberSeason %></h3>
+<%for( var i = 0; i < anime[0].animeseries.length; i++) {
+	if(anime[0].animeseries[i].numberSeason == anime[0].animeseasons[j].numberSeason) {%>
+		          <p><%=anime[0].animeseries[i].numberSeries%>. <%=anime[0].animeseries[i].nameSeries%>
+		          <button onclick="dropseries('<%= animeid %>','<%= anime[0].animeseries[i]._id %>')">Удалить</button></p>          
+	  <%}
+	   }
+	  } %>
+
+
+
+
+<div class="row show-grid">
+	  <div class="col-md-3 col-md-offset-3">
+	  	<a class="button" href="/addseries/<%=anime[0]._id%>">Добавить серию</a>
+	  </div>
+
+	  <div class="col-md-3">
+	  	<a class="button" href="/addseason/<%=anime[0]._id%>">Добавить сезон</a>
+	  </div>
+
+  </div>

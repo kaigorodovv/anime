@@ -4,8 +4,15 @@ Schema = mongoose.Schema;
 var uniqueValidator = require('mongoose-unique-validator');
 
 var Animeseries = new Schema({
+	numberSeason: {
+		type: Number,
+		required: true
+	},
 	numberSeries: {
 		type: Number
+	},
+	nameSeries: {
+		type: String
 	},
 	path: {
 		type: String
@@ -16,8 +23,7 @@ var Season = new Schema({
 	numberSeason: {
 		type: Number,
 		required: true
-	},
-	seriesSeason : [{ type: Schema.Types.ObjectId, ref: 'Animeseries' }]
+	}
 });
 
 var Anime = new Schema({
@@ -34,6 +40,12 @@ var Anime = new Schema({
 	genre: {
 		type: Array,
 		required: true
+	},
+	image: {
+		type: String
+	},
+	info: {
+		type: String
 	},
 	animeseries: [Animeseries],
 	animeseasons: [Season]

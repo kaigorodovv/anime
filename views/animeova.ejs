@@ -20,7 +20,7 @@ for( var i = 0; i < animes.length; i++) {%>
     <%}else{%>
       <h1><%= anime.animename%></h1>
       <% for( var i = 0; i < anime.animepath.length; i++) {%>
-        <div><iframe src="<%= anime.animepath[i]%>" width="607" height="360" frameborder="0"></iframe></div>
+         <div><iframe src="<%= anime.animeseries[i].path%>" width="607" height="360" frameborder="0" allowfullscreen></iframe></div>
     <%}
     }%>
     

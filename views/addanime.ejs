@@ -1,41 +1,26 @@
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="col-xs-2 pad">
-      <ul id="side-menu">
-<ul id="animename">
-        <li><a href="/allanime">Все аниме</a> </li>
-		<li><a href="/addanime">Добавить аниме</a></li>
- 		<li><a href="/addseries">Добавить серию</a></li>
-</ul>
-
-    </div>
-    <div class="col-xs-10">
-    <form method="POST" id="form">
-<legend><h1><%= title %></h1></legend>
-
-<p><label for="animetype">Тип аниме:</label></p>
-<p><input id="animetype" name="animetype" size = "120" value="animeserials" type="radio">Аниме сериал</p>
-<p><input id="animetype" name="animetype" size = "120" value="animemova" type="radio">Аниме фильм</p>
-<p><input id="animetype" name="animetype" size = "120" value="animemovie" type="radio">Аниме OVA</p>
-
-
-<p><label for="animename">Название:</label></p>
-<p><input id="animename" name="animename" size = "80" value="" type="text"></p>
-<p><label for="genre:">Жанр:</label></p>
-<p><input id="genre" name="genre" size = "80" value="" type="text"></p>
-
-<!--<legend><h2>Добавление серий</h2></legend>
-
-<form id="form2"><p><label for="animeseries">Введите количество серий и нажмите "Далее":</label></p>
-<p><input id="animeseries"  name="animeseries" size = "10" value="" type="text"></p></form>
-<div id="try"></div>
-<p><button onclick="addformseries()">Далее</button></p>-->
-</form>
-
-<p><button onclick="addanime()">Добавить аниме</button></p>
-<div class="results"></div>
     
-     
-    </div>
+    <form method="POST" id="form">
+	<legend><h1><%= title %></h1></legend>
+
+	<p><label for="animetype">Тип аниме:</label></p>
+	<p><input id="animetype" name="animetype" size = "120" value="animeserials" type="radio">Аниме сериал</p>
+	<p><input id="animetype" name="animetype" size = "120" value="animemovie" type="radio">Аниме фильм</p>
+	<p><input id="animetype" name="animetype" size = "120" value="animeova" type="radio">Аниме OVA</p>
+
+
+	<p><label for="animename">Название:</label></p>
+	<p><input id="animename" name="animename" size = "80" value="" type="text"></p>
+	<p><label for="genre:">Жанр:</label></p>
+	<p><input id="genre" name="genre" size = "80" value="" type="text"></p>
+	<p><label for="image:">Изображение:</label></p>
+	<p><input id="image" name="image" size = "80" value="" type="text"></p>
+	<p><label for="info:">Информация:</label></p>
+	<p><textarea id="info" name="info" rows="4" cols="79" size = "80" value="" type="text"></textarea></p>
+	</form>
+	<div class="results"></div>
+	<p><button onclick="addanime()">Добавить аниме</button></p>
+	
   </div>
 </div>

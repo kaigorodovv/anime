@@ -1,32 +1,48 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="col-xs-2 pad">
-      <ul id="side-menu">
-<ul id="animename">
-<% var anime = 0;
-for( var i = 0; i < animes.length; i++) {%>
-          <li><a href="/animeserials/<%= animes[i]._id %>"><%= animes[i].animename %></a> </li>
+      <ul class="side-menu">
 
-          <%
-          if(animes[i]._id == id)
-            anime = animes[i];
-           } %>
-</ul>
+      <% var anime = 0;
+      for( var i = 0; i < animes.length; i++) {%>
+                <li><a href="/animeserials/<%= animes[i]._id %>"><%= animes[i].animename %></a> </li>
+
+                <%if(animes[i]._id == id)
+                  anime = animes[i];
+                 } %>
+      </ul>
 
     </div>
-    <div class="col-xs-10">
 
 
+      <div class="col-xs-8 pad">
+          <% if(anime==0){%>
+            <h1><%= title %></h1>
+          <%}else{%>
+            <h1><%= anime.animename%></h1>
+            <div class="results">
+              
+              <img src="<%=anime.image%>" alt="<%= anime.animename%>">
+              <p><%= anime.info %></p> 
+            </div>
+          <%}%>
+      </div>
 
-    <% if(anime==0){%>
-      <h1><%= title %></h1>
-    <%}else{%>
-      <h1><%= anime.animename%></h1>
-      <% for( var i = 0; i < anime.animeseries.length; i++) {%>
-        <div><iframe src="<%= anime.animeseries[i].path%>" width="607" height="360" frameborder="0" allowfullscreen></iframe></div>
-    <%}
-    }%>
-     
+      <div class="col-xs-2 pad">
+       <ul class="side-menu">
+       <% if(anime!=0){%>
+      <%for( var i = 0; i < anime.animeseasons.length; i++) {%>
+        
+        <li><a onclick="season('<%= id %>','<%= anime.animeseasons[i].numberSeason %>')">Сезон <%= anime.animeseasons[i].numberSeason %></a><div id="<%= anime.animeseasons[i].numberSeason %>"class="refrash"><div></li> 
+        <% } 
+        } %>
+        </ul>
+      </div>
+
+
     </div>
   </div>
+      <footer>
+      <div id="footer"></div>
+    </footer>
 </div>

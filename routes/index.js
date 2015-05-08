@@ -33,7 +33,7 @@ exports.animeova = function(req, res){
 
 	var Anime = require('.././models/anime').Anime;
 
-  Anime.find({animetype: 'animemova'}, function(err, animes) {
+  Anime.find({animetype: 'animeova'}, function(err, animes) {
     if (err) return next(err);
     animes.sort(function(x, y) {
       return ((x.animename == y.animename) ? 0 : ((x.animename > y.animename) ? 1 : -1));
@@ -89,9 +89,10 @@ exports.logoutpost = function(req, res){
   res.redirect('/');
 };
 
-exports.allanime = function(req, res){
 
 
+exports.admin = function(req, res){
+  
   var Anime = require('.././models/anime').Anime;
 
   Anime.find({}, function(err, animes) {
@@ -100,13 +101,17 @@ exports.allanime = function(req, res){
       return ((x.animename == y.animename) ? 0 : ((x.animename > y.animename) ? 1 : -1));
     });
 
-  res.render('allanime', { title: 'Все аниме', user: req.user, animes: animes})
+  res.render('admin', { title: 'Админ', user: req.user, animes: animes})
   })
-}
+};
 
+exports.editanime = function(req, res) {
+  var Anime = require('.././models/anime').Anime;
+  Anime.find({_id:req.params.id}, function(err, anime) {
+    if (err) return next(err);
 
-exports.admin = function(req, res){
-  res.render('admin', { title: 'Админ', user: req.user})
+  res.render('editanime', { title: 'Редактирование аниме', user: req.user, anime: anime, animeid: req.params.id})
+  })
 };
 
 exports.addanime = function(req,res){
@@ -115,48 +120,59 @@ exports.addanime = function(req,res){
 
 exports.addseries = function(req,res){
 
-    var Anime = require('.././models/anime').Anime;
-
-  Anime.find({}, function(err, animes) {
+   var Anime = require('.././models/anime').Anime;
+  Anime.find({_id:req.params.id}, function(err, anime) {
     if (err) return next(err);
-    animes.sort(function(x, y) {
-      return ((x.animename == y.animename) ? 0 : ((x.animename > y.animename) ? 1 : -1));
-    });
 
-  res.render('addseries', { title: 'Добавление серии', user: req.user, animes: animes})
+  res.render('addseries', { title: 'Добавление серии', user: req.user, id: req.params.id, anime: anime})
   })
-}
+};
+
+exports.addseason = function(req,res){
+
+  res.render('addseason', { title: 'Добавление сезона', user: req.user, id: req.params.id})
+
+};
 
 exports.addanimepost = function(req, res) {
 
   var animename = req.body.animename;
   var genre = req.body.genre;
   var animetype = req.body.animetype;
+  var image = req.body.image;
+  var info = req.body.info;
 
   var Anime = require('.././models/anime').Anime;
 
   var anime = new Anime({
     animetype: animetype,
     animename: animename,
-    genre: [genre]
+    genre: [genre],
+    image: image,
+    info: info
   });
   anime.save( function(err) {
-      if(err) 
-        console.log('err' + err); 
+      if(err) {
+        console.log('err' + err);
+        res.send("<p>Ошибка при добавлении</p>");
+      }
+      else
       res.send("<p>Аниме добавлено</p>");
   });
 }
 
 exports.addseriespost = function(req,res){
 
+  var numberSeason = req.body.numberSeason;
   var animeid = req.body._id;
   var numberSeries = req.body.numberSeries;
+  var nameSeries = req.body.nameSeries;
   var path = req.body.path;
   var f = false;
 
   var Anime = require('.././models/anime').Anime;
 
-  Anime.find({_id : animeid}, function(err,anime) {
+ /* Anime.find({_id : animeid}, function(err,anime) {
 
 
     for(var i = 0; i < anime[0].animeseries.length; i++) {
@@ -168,25 +184,55 @@ exports.addseriespost = function(req,res){
     }
     if(f) {
       console.log('errorerror');
+      res.send("<p>Ошибка при добавлении</p>");
     } else {
       Anime.findByIdAndUpdate(
       animeid,
-      {$push: {"animeseries": {numberSeries: numberSeries, path: path}}},
+      {$push: {"animeseries": {numberSeries: numberSeries, nameSeries: nameSeries, path: path}}},
       {safe: true, upsert: true},
       function(err, model) {
           if(err) console.log('err');
+          res.send("<p>Серия добавлена</p>");
       })
     }
 
-  });
+  });*/
 
- /* Anime.findByIdAndUpdate(
+  Anime.findByIdAndUpdate(
     animeid,
-    {$push: {"animeseries": {numberSeries: numberSeries, path: path}}},
+    {$push: {"animeseries": {numberSeason : numberSeason, numberSeries: numberSeries, nameSeries: nameSeries, path: path}}},
     {safe: true, upsert: true},
     function(err, model) {
-        console.log(err);
-  });*/
+        if(err) {
+          console.log('err');
+        } else {
+          res.send("<p>Серия добавлена</p>");
+        }
+  });
+
+}
+
+exports.addseasonpost = function(req,res){
+
+  var animeid = req.body._id;
+  var numberSeason = req.body.numberSeason;
+
+  var Anime = require('.././models/anime').Anime;
+
+  console.log(numberSeason);
+
+
+  Anime.findByIdAndUpdate(
+    animeid,
+    {$push: {"animeseasons": {numberSeason: numberSeason}}},
+    {safe: true, upsert: true},
+    function(err, model) {
+        if(err) {
+          console.log('err');
+        } else {
+          res.send("<p>Сезон добавлен</p>");
+        }
+  });
 
 }
 
@@ -200,4 +246,53 @@ exports.dropanime = function(req,res) {
         console.log('err'+ err);
   })
 
+}
+
+
+exports.dropseries = function(req,res) {
+  var seriesid = req.body.seriesid;
+  var animeid = req.body.animeid;
+  
+  var Anime = require('.././models/anime').Anime;
+  
+
+  Anime.findOne({_id : animeid}, function(err,anime) {
+     if(err) console.log('err'+ err);
+
+     for(var i = 0; i<anime.animeseries.length; i++) {
+      if(anime.animeseries[i]._id == seriesid) {
+        var x = i;
+        break;
+      }
+     }
+     anime.animeseries.splice(x,1);
+     anime.save( function(err) {
+      if (err) console.log('err'+ err);
+      console.log('Anime update');
+     })
+  })
+
+}
+
+exports.postanimeserials = function(req,res) {
+  var numberSeason = req.body.numberSeason;
+  var animeid = req.body.animeid;
+  
+  var Anime = require('.././models/anime').Anime;
+  
+
+  Anime.findOne({_id : animeid}, function(err,anime) {
+     if(err) console.log('err'+ err);
+
+     var series = [];
+
+     for(var i = 0; i<anime.animeseries.length; i++) {
+      if(anime.animeseries[i].numberSeason == numberSeason) {
+        series.push(anime.animeseries[i])
+      }
+     }
+
+     res.send(series);
+     
+  })
 }

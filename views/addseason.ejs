@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  
+    <h1><%= title %></h1>
+
+
+
+    <form method="POST" id="form">
+
+	<p><input id="id" name="_id" size = "80" value="<%=id%>" type="text"></p>
+
+    <p><label for="numberSeason">Номер сезона:</label></p>
+	<p><input id="numberSeason" name="numberSeason" size = "80" value="" type="text"></p>
+
+    </form>
+    <div class="results"></div>
+    <p><button onclick="addseason()">Добавить сезон</button></p>
+
+</div>
