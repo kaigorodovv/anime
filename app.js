@@ -42,42 +42,8 @@ app.configure('production', function(){
 
 // Routes
 
-app.get('/', routes.index);
-app.get('/myanimelist', routes.myanimelist);
-app.get('/animeserials', routes.animeserials);
-app.get('/animeova', routes.animeova);
-app.get('/animemovie', routes.animemovie);
-app.get('/addanime', routes.addanime);
-app.get('/admin', routes.admin);
-app.get('/login', routes.login);
-app.post('/login', routes.loginpost);
-app.post('/logout', routes.logoutpost);
 
-app.post('/animeserials', routes.postanimeserials);
-app.post('/dropanime', routes.dropanime);
-app.post('/addanime',routes.addanimepost);
-app.post('/addseries',routes.addseriespost);
-app.post('/addseason',routes.addseasonpost);
-app.post('/dropseries', routes.dropseries);
-
-app.get('/myanimelist/:id', routes.myanimelist);
-app.get('/animeserials/:id', routes.animeserials);
-app.get('/animeova/:id', routes.animeova);
-app.get('/animemovie/:id', routes.animemovie);
-app.get('/admin/:id', routes.editanime);
-app.get('/addseries/:id', routes.addseries);
-app.get('/addseason/:id', routes.addseason);
-
-
-var User = require('./models/users').User;
-
-app.get('/user', function(req, res, next) {
-  User.find({}, function(err, users) {
-    if (err) return next(err);
-    res.json(users);
-  })
-});
-
+routes(app);
 
 
 app.listen(3000, function(){

@@ -3,15 +3,15 @@ Schema = mongoose.Schema;
 
 var uniqueValidator = require('mongoose-unique-validator');
 
-var Animeseries = new Schema({
-	numberSeason: {
+var Series = new Schema({
+	season: {
 		type: Number,
 		required: true
 	},
-	numberSeries: {
+	number: {
 		type: Number
 	},
-	nameSeries: {
+	name: {
 		type: String
 	},
 	path: {
@@ -20,19 +20,19 @@ var Animeseries = new Schema({
 });
 
 var Season = new Schema({
-	numberSeason: {
+	number: {
 		type: Number,
 		required: true
 	}
 });
 
 var Anime = new Schema({
-	animetype: {
+	type: {
 		type: String,
 		required: true
 	},
 
-	animename: {
+	name: {
 		type: String,
 		unique: true,
 		required: true
@@ -47,11 +47,11 @@ var Anime = new Schema({
 	info: {
 		type: String
 	},
-	animeseries: [Animeseries],
-	animeseasons: [Season]
+	series: [Series],
+	seasons: [Season]
 });
 
 exports.Anime = mongoose.model('Anime', Anime); 
 
 Anime.plugin(uniqueValidator);	
-Animeseries.plugin(uniqueValidator);
+Series.plugin(uniqueValidator);

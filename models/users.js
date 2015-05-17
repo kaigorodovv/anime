@@ -5,6 +5,33 @@ var util = require('util');
 var mongoose = require('.././libs/mongoose'),
   Schema = mongoose.Schema;
 
+  var Favorites = new Schema({
+    animeID: {
+      type: String
+    },
+    seriesID: {
+      type: String
+    }
+  });
+
+  var Seen = new Schema({
+    animeID: {
+      type: String
+    },
+    seriesID: {
+      type: String
+    }
+  });
+
+  var WatchLater = new Schema({
+    animeID: {
+      type: String
+    },
+    seriesID: {
+      type: String
+    }
+  });
+
 var schema = new Schema({
   username: {
     type: String,
@@ -22,7 +49,10 @@ var schema = new Schema({
   created: {
     type: Date,
     default: Date.now
-  }
+  },
+  favorites:[Favorites],
+  seen:[Seen],
+  watchLater: [WatchLater]
 });
 
 schema.methods.encryptPassword = function(password) {

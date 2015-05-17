@@ -1,0 +1,18 @@
+<h1><%= title %></h1>
+
+<div class="row-fluid">
+    <div class="col-xs-2">
+	    <ul class="side-menu">
+
+	    <%for( var i = 0; i < animes.length; i++) {%>
+	        <li><a href="/serials/<%= animes[i]._id %>"><%= animes[i].name %></a></li>
+		<% } %>
+
+	    </ul>
+    </div>
+
+
+    <footer>
+    	<div class="footer col-xs-12"></div>
+	</footer>
+</div>

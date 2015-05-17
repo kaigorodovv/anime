@@ -6,13 +6,13 @@
 
     <form method="POST" id="form">
 
-	<p><input id="id" name="_id" size = "80" value="<%=id%>" type="text"></p>
+	<p><input id="id" name="animeID" size = "80" value="<%= animeID %>" type="text"></p>
 
-    <p><label for="numberSeason">Номер сезона:</label></p>
-	<p><input id="numberSeason" name="numberSeason" size = "80" value="" type="text"></p>
+    <p><label for="number">Номер сезона:</label></p>
+	<p><input id="number" name="number" size = "80" value="" type="text"></p>
 
     </form>
     <div class="results"></div>
-    <p><button onclick="addseason()">Добавить сезон</button></p>
+    <p><button onclick="addseason('<%= animeID %>')">Добавить сезон</button></p>
 
 </div>

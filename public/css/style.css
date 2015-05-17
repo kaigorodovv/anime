@@ -89,6 +89,9 @@ width: 1000px !important;
   	background: rgb(64,199,129);
   	box-shadow: 0 -3px rgb(53,167,110) inset;
   	transition: 0.2s;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
 } 
 .button:hover { background: rgb(53, 167, 110); }
 .button:active {
@@ -100,8 +103,8 @@ width: 1000px !important;
 	border: 1px double black;
 }*/
 
-#footer {
-    height: 27px;
+.footer {
+    height: 20px;
 }
 
 #id {
@@ -113,31 +116,114 @@ img {
 }
 
 #list {
-	height: 80px;
-	width: 607px;
-	border-radius: 5px;
-	background: #d63c15;
-	box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-	overflow: scroll;
-
-
+	
+	border-radius: 3px;
+	
 
 }
 
-#list a {
-	text-decoration: none;
+
+
+#buttons {
+
+    margin-top: 15px;
+
+}
+
+.deleteButton {
+	height: 14px;
+	width: 14px;
 	cursor: pointer;
 
 }
 
-.refrash{
-	background: #d62000;
-	font-style: italic;
 
+
+
+
+#nav {
+   
+
+    box-shadow:0 2px 10px rgba(0,0,0,0.5);
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+}
+#nav, #nav ul {
+    list-style:none;
+    padding:0;
+    width: 150px;
+    cursor: pointer;
+    border-radius:3px;
+}
+#nav ul {
+    position:relative;
+    z-index:-1;
+}
+#nav li {
+    position:relative;
+    z-index:100;
+}
+#nav ul li {
+    margin-top:-23px;
+
+    -moz-transition:  0.4s linear 0.4s;
+    -ms-transition: 0.4s linear 0.4s;
+    -o-transition: 0.4s linear 0.4s;
+    -webkit-transition: 0.4s linear 0.4s;
+    transition: 0.4s linear 0.4s;
+}
+#nav li a {
+    background-color:#d63c15;
+    color:#fff;
+    display:block;
+    font-size:12px;
+    font-weight:bold;
+    line-height:28px;
+    outline:0;
+    padding-left:15px;
+    text-decoration:none;
 }
 
-#buttons {
-	
-    margin-top: 15px;
+#nav li a:hover {
+    background-color:#d62515;
+}
+#nav ul li a {
+    background-color:#eee;
+    border-bottom:1px solid #ccc;
+    color:#000;
+    font-size:11px;
+    line-height:22px;
+}
+#nav ul li a:hover {
+    background-color:#ddd;
+    color:#444;
+}
 
+#nav ul li:nth-child(odd) a img {
+    background:url("../images/bulb2.png") no-repeat;
+}
+#nav a.sub:focus {
+    background:#d63c15;
+    outline:0;
+}
+#nav a:focus ~ ul li {
+    margin-top:0;
+
+    -moz-transition:  0.4s linear;
+    -ms-transition: 0.4s linear;
+    -o-transition: 0.4s linears;
+    -webkit-transition: 0.4s linears;
+    transition: 0.4s linear;
+}
+
+#nav a.sub:active {
+    background:#d63c15;
+    outline:0;
+}
+#nav a:active ~ ul li {
+    margin-top:0;
+}
+#nav ul:hover {
+    display:block;
 }

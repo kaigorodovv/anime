@@ -1,33 +1,26 @@
-<div class="container-fluid">
-  
-    <h1><%= title %></h1>
+<h1><%= title %></h1>
 
-
-
-    <form method="POST" id="form">
-
-
-
-    <select name="numberSeason">
+<form method="POST" id="form">
+    <select name="season">
           <option selected="selected">Выберите сезон</option>
           <option>0</option>
-           <% for( var i = 0; i < anime[0].animeseasons.length; i++) { %>
-        <option><%= anime[0].animeseasons[i].numberSeason %></option>
+           <% for( var i = 0; i < anime[0].seasons.length; i++) { %>
+        <option><%= anime[0].seasons[i].number %></option>
     <%  } %>
       </select>
 
-	<p><input id="id" name="_id" size = "80" value="<%=id%>" type="text"></p>
+	<p><input id="id" name="animeID" size = "80" value="<%=animeID%>" type="text"></p>
 
-    <p><label for="numberSeries">Номер серии:</label></p>
-	<p><input id="numberSeries" name="numberSeries" size = "80" value="" type="text"></p>
+    <p><label for="number">Номер серии:</label></p>
+	<p><input id="numbe" name="number" size = "80" value="" type="text"></p>
 
-	<p><label for="nameSeries">Название серии:</label></p>
-	<p><input id="nameSeries" name="nameSeries" size = "80" value="" type="text"></p>
+	<p><label for="name">Название серии:</label></p>
+	<p><input id="name" name="name" size = "80" value="" type="text"></p>
 
 	<p><label for="path">Путь к видео:</label></p>
 	<p><input id="path" name="path" size = "80" value="" type="text"></p>
     </form>
     <div class="results"></div>
-    <p><button onclick="addseries()">Добавить серию</button></p>
+    <p><button onclick="addseries('<%= animeID %>')">Добавить серию</button></p>
 
 </div>

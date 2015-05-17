@@ -1,27 +1,24 @@
-<h1><%=title%> "<%= anime[0].animename%>"</h1>
-
-
-
-<%for( var j = 0; j < anime[0].animeseasons.length; j++) {%>
-<h3>Сезон <%= anime[0].animeseasons[j].numberSeason %></h3>
-<%for( var i = 0; i < anime[0].animeseries.length; i++) {
-	if(anime[0].animeseries[i].numberSeason == anime[0].animeseasons[j].numberSeason) {%>
-		          <p><%=anime[0].animeseries[i].numberSeries%>. <%=anime[0].animeseries[i].nameSeries%>
-		          <button onclick="dropseries('<%= animeid %>','<%= anime[0].animeseries[i]._id %>')">Удалить</button></p>          
-	  <%}
-	   }
-	  } %>
-
-
-
-
+<h1><%=title%> "<%= anime[0].name%>"</h1>
 <div class="row show-grid">
-	  <div class="col-md-3 col-md-offset-3">
-	  	<a class="button" href="/addseries/<%=anime[0]._id%>">Добавить серию</a>
-	  </div>
+<div class="col-xs-12">
 
-	  <div class="col-md-3">
-	  	<a class="button" href="/addseason/<%=anime[0]._id%>">Добавить сезон</a>
-	  </div>
+<%for( var i = 0; i < anime[0].seasons.length; i++) {%>
+<h3>Сезон <%= anime[0].seasons[i].number %></h3>
+	<%for( var j = 0; j < anime[0].series.length; j++) {
+		if(anime[0].series[j].season == anime[0].seasons[i].number) {%>
+			          <p><%=anime[0].series[j].number%>. <%=anime[0].series[j].name%>
+			          <img class="deleteButton" src="/images/delete.png" alt="Удалить" onclick="dropseries('<%= animeID %>','<%= anime[0].series[j]._id %>')"></p>          
+		<% }
+	}
+} %>
 
-  </div>
+
+
+<div>
+
+	<a class="button" href="/addseries/<%=anime[0]._id%>">Добавить серию</a>
+	<a class="button" href="/addseason/<%=anime[0]._id%>">Добавить сезон</a> 
+
+</div>
+</div>
+</div>
