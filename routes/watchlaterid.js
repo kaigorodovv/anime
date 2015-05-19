@@ -31,10 +31,17 @@ exports.get = function(req, res, next) {
     		})
     	})
 
+        for(var i = 0; i < animes.length; i++) {
+            if(animes[i]._id == req.params.id) {
+                anime = animes[i];
+                break;
+            }
+        }
+
     	console.log(user.favorites)
 		console.log(animes)
 	    
-		res.render('watchlater', { title: 'Мой аниме лист', user: req.user, animes: animes})
+		res.render('favoritesid', { title: 'Мой аниме лист', user: req.user, anime: anime, animeID: req.params.id})
 	})
 
 };

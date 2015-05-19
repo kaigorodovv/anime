@@ -5,30 +5,42 @@ exports.get = function(req, res, next) {
 
 	var animeID = req.query.animeid;
 	var seriesID = req.query.seriesid;
-	var user = req.user
+	var user = req.user;
 	var favorites = 0;
 	var seen = 0;
 	var watchLater = 0;
 
-	for(var i = 0; i < user.favorites.length; i++) {
-		if(user.favorites[i].seriesID == seriesID) {
-			favorites = 1;
-			break;
-		}
-	}
+	if(user) {
 
-	for(var i = 0; i < user.seen.length; i++) {
-		if(user.seen[i].seriesID == seriesID) {
-			seen = 1;
-			break;
+		for(var i = 0; i < user.favorites.length; i++) {
+			if(user.favorites[i].seriesID == seriesID) {
+				favorites = 1;
+				break;
+			}
 		}
-	}
 
-	for(var i = 0; i < user.watchLater.length; i++) {
-		if(user.watchLater[i].seriesID == seriesID) {
-			watchLater = 1;
-			break;
+		for(var i = 0; i < user.seen.length; i++) {
+			if(user.seen[i].seriesID == seriesID) {
+				seen = 1;
+				break;
+			}
 		}
+
+		for(var i = 0; i < user.watchLater.length; i++) {
+			if(user.watchLater[i].seriesID == seriesID) {
+				watchLater = 1;
+				break;
+			}
+		}
+
+		User.findByIdAndUpdate(
+		    user._id,
+		    {"lastViewed": {animeID: animeID,  seriesID: seriesID}},
+		    {safe: true, upsert: true},
+		    function(err, model) {
+		        if(err)  console.log(err);
+		  });
+
 	}
 
 

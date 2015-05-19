@@ -19,9 +19,15 @@
 					<li><a href="/">Главная</a></li>
 					<li><a href="/myanimelist">Мой аниме лист</a></li>
           <li><a href="/serials">Аниме Сериалы</a></li>
-					<li><a href="/animeova">Аниме OVA</a></li>
-          <li><a href="/admin">Админ</a></li>
-					<li id="animemovie"><a href="/animemovie">Аниме Фильмы</a></li>
+					<!-- <li><a href="/animeova">Аниме OVA</a></li> -->
+
+          <% if (user) { %>
+            <% if (user.name = 'А') { %>
+              <li><a href="/admin">Админ</a></li>
+            <% } %>
+          <% } %>
+
+					<!-- <li id="animemovie"><a href="/animemovie">Аниме Фильмы</a></li> -->
 
           <% if (user) { %>
           <li id="log"><a href="" onclick="$('<form method=POST action=/logout>').submit();return false">Добро пожаловать, <%= user.get('username') %></a></form></li>

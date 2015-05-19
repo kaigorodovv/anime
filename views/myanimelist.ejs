@@ -1,5 +1,7 @@
 <h1><%= title %></h1>
 
+<% if(user) { %>
+
 <div class="row-fluid">
     <div class="col-xs-2">
 	    <ul class="side-menu">
@@ -10,7 +12,77 @@
     </div>
 
 
+ <div class="col-xs-8 pad">
+    	<h1><%= anime[0].name%></h1>
+            <div class="results">
+            	<h3>Последняя просмотренная(Сезон <%= series.season %> Серия <%= series.number %>)</h3>
+				<iframe src="<%= series.path %>" width="615" height="360" frameborder="0" allowfullscreen></iframe>
+				<% if(user) {%>
+					<div id="buttons">
+
+						<div id="buttonFavorits">
+							<% if(favorites == 0) {%>
+								<p class="button" onclick="addFavorites('<%= animeID %>', '<%= seriesID%>')">Добавить в избранное</p>
+							<% } %>
+
+							<% if(favorites == 1) {%>
+								<p class="button" onclick="dropFavorites('<%= animeID %>', '<%= seriesID%>')">Удалить из избранного</p>
+							<% } %>
+						</div>
+
+						<div id="buttonSeen">
+							<% if(seen == 0) {%>
+								<p class="button" onclick="addSeen('<%= animeID %>', '<%= seriesID%>')">Добавить в просмотренное</p>
+							<% } %>
+
+							<% if(seen == 1) {%>
+								<p class="button" onclick="dropSeen('<%= animeID %>', '<%= seriesID%>')">Удалить из просмотренного</p>
+							<% } %>
+						</div>
+
+
+						<div id="buttonWatchLater">
+							<% if(watchLater == 0) {%>
+								<p class="button" onclick="addWatchLater('<%= animeID %>', '<%= seriesID%>')">Посмотреть позже</p>
+							<% } %>
+
+							<% if(watchLater == 1) {%>
+								<p class="button" onclick="dropWatchLater('<%= animeID %>', '<%= seriesID%>')">Не смотреть позже</p>
+							<% } %>
+						</div>
+
+
+					</div>
+				<%}%>
+            </div> 
+    </div>
+
+        <div class="col-xs-2">
+	    <div id = "list"><ul id="nav">
+
+	    <%for( var i = 0; i < anime[0].seasons.length; i++) {%>
+			<li><a class="sub" tabindex="1">Сезон <%= anime[0].seasons[i].number %></a><ul>
+				<%for( var j = 0; j < anime[0].series.length; j++) {
+					if(anime[0].series[j].season == anime[0].seasons[i].number) {%>
+						 <li><a href="/series/?animeid=<%= anime[0]._id %>&seriesid=<%= anime[0].series[j]._id %>"><%= anime[0].series[j].number %>. <%=anime[0].series[j].name%></a></li>
+						          
+					<% }
+				} %>
+				</ul>
+    		</li>
+			<%} %>
+
+	    </ul>
+	    </div>
+    </div>
+
+
     <footer>
     	<div class="footer col-xs-12"></div>
 	</footer>
+	<% } else {%>
+	<p>Вы не зарегистрированы на сайте. Чтобы воспользоваться данным разделом пройдите на страницу <a href="/login">Регистрации и входа</a>!</p>
+	<% } %>
+
+
 </div>

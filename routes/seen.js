@@ -1,20 +1,42 @@
 exports.get = function(req, res, next) {
 	var Anime = require('.././models/anime').Anime;
+	var user = req.user;
+	var f = require('array.prototype.find');
 
 
 	Anime.find({type: 'serials'}, function(err, animes) {
     	if (err) return next(err);
 
-	    animes.sort(function(x, y) {
-	    	return ((x.name == y.name) ? 0 : ((x.name > y.name) ? 1 : -1));
-	    });
-
-	    Anime.find({_id: req.params.id}, function(err, anime) {
-    	if (err) return next(err);
-
-
-			res.render('seen', { title: 'Мой аниме лист', user: req.user, animes: animes, anime : anime, animeID: req.params.id})
+    	animes = animes.filter(function(item) {
+    		var a = user.seen.find(function(favitem, index, arr) {
+    			return favitem.animeID ==  item._id;
+    		})
+    		if(a == undefined) {
+    			return false;
+    		} else {
+    			return true;
+    		}
 		})
+
+    	animes.forEach(function(item, i, arr) {
+    		item.series = item.series.filter(function(sitem) {
+    			var a = user.seen.find(function(favitem, favindex, favarr){
+    				return favitem.seriesID == sitem._id
+    			})
+    			if(a == undefined) {
+    				return false;
+    			} else {
+    				return true;
+    			}
+    		})
+    	})
+
+    	console.log(user.favorites)
+		console.log(animes)
+	    
+		res.render('seen', { title: 'Мой аниме лист', user: req.user, animes: animes})
 	})
 
 };
+
+

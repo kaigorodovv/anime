@@ -2,8 +2,13 @@ module.exports = function (app) {
     app.get('/', require('./main').get);
     app.get('/myanimelist', require('./myanimelist').get);
     app.get('/favorites', require('./favorites').get);
+    app.get('/favorites/:id', require('./favoritesid').get);
+
     app.get('/seen', require('./seen').get);
+    app.get('/seen/:id', require('./seenid').get);
+
     app.get('/watchlater', require('./watchlater').get);
+    app.get('/watchlater/:id', require('./watchlaterid').get);
     
     app.get('/serials', require('./serials').get);
     app.get('/serials/:id', require('./serialsid').get);

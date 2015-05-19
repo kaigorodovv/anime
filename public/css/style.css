@@ -227,3 +227,52 @@ img {
 #nav ul:hover {
     display:block;
 }
+
+
+.animelist {
+
+}
+
+.container .animelist {
+    display: block;
+    list-style-type: none;
+    padding: 0px 0px 0px 0px;
+    background: silver;
+
+}
+
+.container .animelist li {
+        display: block;
+        margin: 4px 0px 4px 0px;
+        padding: 4px;
+}
+
+.container .animelist li a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+    display:block;
+}
+
+.container .animelist  .one{
+    color: #fcf5e8;
+    background: gray;
+    cursor: pointer;
+}
+
+.container .animelist  .two{
+    color: #000;
+    background: darkgray;
+    cursor: pointer;
+}
+
+.container .animelist .one:hover {
+     background: dimgray;
+}
+.container .animelist .two:hover {
+     background: dimgray;
+}
+
+.container .animelist ul {
+    padding: 0px;
+}

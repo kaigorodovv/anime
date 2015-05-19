@@ -9,6 +9,18 @@
 	    </ul>
     </div>
 
+<div class="col-xs-10">
+	<ul class="animelist">
+		<% for(var i = 0; i < animes.length; i++) { 
+			if((i%2) == 0) {%>
+				<li class="one"><a href="/watchlater/<%= animes[i]._id %>"><%= i+1 %>. <%= animes[i].name %></a></li>
+			<%} else {%>
+				<li class="two"><a href="/watchlater/<%= animes[i]._id %>"><%= i+1 %>. <%= animes[i].name %></a></li>
+			<%}%>
+		<%}%>
+	</ul>
+</div>
+
 
     <footer>
     	<div class="footer col-xs-12"></div>

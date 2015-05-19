@@ -8,7 +8,7 @@ exports.get = function(req, res, next) {
     	if (err) return next(err);
 
     	animes = animes.filter(function(item) {
-    		var a = user.watchLater.find(function(favitem, index, arr) {
+    		var a = user.favorites.find(function(favitem, index, arr) {
     			return favitem.animeID ==  item._id;
     		})
     		if(a == undefined) {
@@ -20,7 +20,7 @@ exports.get = function(req, res, next) {
 
     	animes.forEach(function(item, i, arr) {
     		item.series = item.series.filter(function(sitem) {
-    			var a = user.watchLater.find(function(favitem, favindex, favarr){
+    			var a = user.favorites.find(function(favitem, favindex, favarr){
     				return favitem.seriesID == sitem._id
     			})
     			if(a == undefined) {
@@ -31,10 +31,17 @@ exports.get = function(req, res, next) {
     		})
     	})
 
+        for(var i = 0; i < animes.length; i++) {
+            if(animes[i]._id == req.params.id) {
+                anime = animes[i];
+                break;
+            }
+        }
+
     	console.log(user.favorites)
 		console.log(animes)
 	    
-		res.render('watchlater', { title: 'Мой аниме лист', user: req.user, animes: animes})
+		res.render('favoritesid', { title: 'Мой аниме лист', user: req.user, anime: anime, animeID: req.params.id})
 	})
 
 };

@@ -32,6 +32,15 @@ var mongoose = require('.././libs/mongoose'),
     }
   });
 
+  var LastViewed = new Schema({
+    animeID: {
+      type: String
+    },
+    seriesID: {
+      type: String
+    }
+  });
+
 var schema = new Schema({
   username: {
     type: String,
@@ -52,7 +61,8 @@ var schema = new Schema({
   },
   favorites:[Favorites],
   seen:[Seen],
-  watchLater: [WatchLater]
+  watchLater: [WatchLater],
+  lastViewed: [LastViewed]
 });
 
 schema.methods.encryptPassword = function(password) {

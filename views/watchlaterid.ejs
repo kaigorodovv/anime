@@ -1,0 +1,35 @@
+<h1><%= title %></h1>
+
+<div class="row-fluid">
+    <div class="col-xs-2">
+	     <ul class="side-menu">
+	        <li><a href="/favorites">Избранное</a></li>
+	        <li><a href="/seen">Просмотренное</a></li>
+	        <li><a href="/watchlater">Посмотреть позже</a></li>
+	    </ul>
+    </div>
+
+<div class="col-xs-10">
+	<ul>
+		<%for( var i = 0; i < anime.seasons.length; i++) { var fl = 0;%>
+			<h3>Сезон <%= anime.seasons[i].number %></h3><ul>
+				<%for( var j = 0; j < anime.series.length; j++) {
+					if(anime.series[j].season == anime.seasons[i].number) {%>
+						 <li><a href="/series/?animeid=<%= anime._id %>&seriesid=<%= anime.series[j]._id %>"><%= anime.series[j].number %>. <%=anime.series[j].name%></a></li>
+						<% fl = 1; %>         
+					<% }
+				} %>
+				<% if(fl == 0) { fl = 0;%>
+					<li>В сезоне нет серий которые вы бы желали посмотреть</li>
+
+					<%}%>
+    		</ul>
+		<%} %>
+	</ul>
+</div>
+
+
+    <footer>
+    	<div class="footer col-xs-12"></div>
+	</footer>
+</div>
