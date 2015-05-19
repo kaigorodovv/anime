@@ -1,0 +1,26 @@
+<h1><%= title %></h1>
+
+<% if(user) { %>
+
+<div class="row-fluid">
+    <div class="col-xs-2">
+	    <ul class="side-menu">
+	        <li><a href="/favorites">Избранное</a></li>
+	        <li><a href="/seen">Просмотренное</a></li>
+	        <li><a href="/watchlater">Посмотреть позже</a></li>
+	    </ul>
+    </div>
+
+
+
+
+
+    <footer>
+    	<div class="footer col-xs-12"></div>
+	</footer>
+	<% } else {%>
+	<p>Вы не зарегистрированы на сайте. Чтобы воспользоваться данным разделом пройдите на страницу <a href="/login">Регистрации и входа</a>!</p>
+	<% } %>
+
+
+</div>

@@ -3,13 +3,16 @@ exports.get = function(req, res){
 	var Anime = require('.././models/anime').Anime;
 	var User = require('.././models/users').User;
 
+	if(req.user.lastViewed[0] != undefined) {
+		var animeID = req.user.lastViewed[0].animeID;
+		var seriesID = req.user.lastViewed[0].seriesID;
 
-	var animeID = req.user.lastViewed[0].animeID;
-	var seriesID = req.user.lastViewed[0].seriesID;
+
 	var user = req.user;
 	var favorites = 0;
 	var seen = 0;
 	var watchLater = 0;
+
 
 	console.log(animeID)
 	console.log(seriesID)
@@ -64,4 +67,7 @@ exports.get = function(req, res){
 									watchLater: watchLater
 								})
 		})
+	} else {
+			res.render('myanimelist_', { title: "Мой аниме лист", user: req.user})
+	}
 };
